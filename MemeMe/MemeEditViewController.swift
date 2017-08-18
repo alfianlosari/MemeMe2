@@ -27,6 +27,9 @@ class MemeEditViewController: UIViewController {
     @IBOutlet weak var cameraBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
     
+    var editMeme: Meme?
+    weak var memeDetailViewController: MemeDetailViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAttributes(forTextField: topTextField, initialText: defaultTopTextFieldText)
@@ -35,9 +38,17 @@ class MemeEditViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupViewForEditMeme()
         setupShareBarButtonItem()
         cameraBarButtonItem.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotification()
+    }
+    
+    func setupViewForEditMeme() {
+        guard let meme = editMeme else { return }
+        memeImageView.image = meme.originalImage
+        topTextField.text = meme.topText
+        bottomTextField.text = meme.bottomText
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -103,16 +114,24 @@ class MemeEditViewController: UIViewController {
                 let bottomText = self.bottomTextField.text,
                 let originalImage = self.memeImageView.image
             else { return }
-            _ = Meme(topText: topText, bottomText: bottomText, originalImage: originalImage, memedImage: memedImage)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let meme = Meme(topText: topText, bottomText: bottomText, originalImage: originalImage, memedImage: memedImage)
+            if let editMeme = self.editMeme {
+                guard let index = appDelegate.memes.index(where: { $0 == editMeme }) else { return }
+                appDelegate.memes[index] = meme
+                self.memeDetailViewController?.meme = meme
+            } else {
+                appDelegate.memes.append(meme)
+            }
+            
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
+            
         }
         present(activityViewController, animated: true)
     }
     
     @IBAction func cancel(_ sender: Any) {
-        memeImageView.image = nil
-        topTextField.text = defaultTopTextFieldText
-        bottomTextField.text = defaultBottomTextFieldText
-        setupShareBarButtonItem()
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     func generateMemedImage() -> UIImage {
