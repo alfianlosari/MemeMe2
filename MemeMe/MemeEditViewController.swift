@@ -98,10 +98,14 @@ class MemeEditViewController: UIViewController {
     @IBAction func share(_ sender: Any) {
         let memedImage = generateMemedImage()
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        present(activityViewController, animated: true) {
-            _ = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.memeImageView.image!, memedImage: memedImage)
+        activityViewController.completionWithItemsHandler = { _, _, _, _ in
+            guard let topText = self.topTextField.text,
+                let bottomText = self.bottomTextField.text,
+                let originalImage = self.memeImageView.image
+            else { return }
+            _ = Meme(topText: topText, bottomText: bottomText, originalImage: originalImage, memedImage: memedImage)
         }
-        
+        present(activityViewController, animated: true)
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -112,20 +116,22 @@ class MemeEditViewController: UIViewController {
     }
     
     func generateMemedImage() -> UIImage {
-        navigationBar.isHidden = true
-        toolbar.isHidden = true
+        hideNavigationBarAndToolbar(true)
         
         UIGraphicsBeginImageContext(view.frame.size)
         view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
         let memedImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        navigationBar.isHidden = false
-        toolbar.isHidden = false
+        hideNavigationBarAndToolbar(false)
         
         return memedImage
     }
     
+    func hideNavigationBarAndToolbar(_ isHide: Bool) {
+        navigationBar.isHidden = isHide
+        toolbar.isHidden = isHide
+    }
 
     override var prefersStatusBarHidden: Bool { return true }
 }

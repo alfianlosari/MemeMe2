@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8B004FB51F45C62A00DCE1B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B004FB41F45C62A00DCE1B1 /* AppDelegate.swift */; };
-		8B004FB71F45C62A00DCE1B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B004FB61F45C62A00DCE1B1 /* ViewController.swift */; };
 		8B004FBA1F45C62A00DCE1B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B004FB81F45C62A00DCE1B1 /* Main.storyboard */; };
 		8B004FBC1F45C62A00DCE1B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B004FBB1F45C62A00DCE1B1 /* Assets.xcassets */; };
 		8B004FBF1F45C62A00DCE1B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B004FBD1F45C62A00DCE1B1 /* LaunchScreen.storyboard */; };
@@ -19,7 +18,6 @@
 /* Begin PBXFileReference section */
 		8B004FB11F45C62A00DCE1B1 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B004FB41F45C62A00DCE1B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8B004FB61F45C62A00DCE1B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8B004FB91F45C62A00DCE1B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B004FBB1F45C62A00DCE1B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B004FBE1F45C62A00DCE1B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				8B004FB41F45C62A00DCE1B1 /* AppDelegate.swift */,
-				8B004FB61F45C62A00DCE1B1 /* ViewController.swift */,
 				8B004FB81F45C62A00DCE1B1 /* Main.storyboard */,
 				8B004FBB1F45C62A00DCE1B1 /* Assets.xcassets */,
 				8B004FBD1F45C62A00DCE1B1 /* LaunchScreen.storyboard */,
@@ -145,7 +142,6 @@
 			files = (
 				8B373AA01F45C9C6008AEFCE /* MemeEditViewController.swift in Sources */,
 				8B373AA21F45DB04008AEFCE /* Meme.swift in Sources */,
-				8B004FB71F45C62A00DCE1B1 /* ViewController.swift in Sources */,
 				8B004FB51F45C62A00DCE1B1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
